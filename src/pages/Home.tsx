@@ -43,6 +43,7 @@ import {
   Volume2,
 } from "lucide-react";
 import { business as b } from "../config/business";
+import { publicAsset } from "../config/assets";
 import { products, categories, occasions, Product } from "../data/catalog";
 import { wa, Chat, available, Photo } from "../store/Shop";
 export function Hero() {
@@ -58,7 +59,7 @@ export function Hero() {
     <section className="hero">
       <video
         ref={ref}
-        poster="/images/hero.jpg"
+        poster={publicAsset("images/hero.jpg")}
         autoPlay={!reduced}
         playsInline
         loop
@@ -66,7 +67,7 @@ export function Hero() {
         onPlay={() => P(false)}
         onPause={() => P(true)}
       >
-        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src={publicAsset("videos/hero.mp4")} type="video/mp4" />
       </video>
       <div className="shade" />
       <motion.div
@@ -100,9 +101,9 @@ export function Hero() {
         </div>
       </motion.div>
       <div className="herobottom">
-        <a href="#categorias">
+        <Link to="/#categorias">
           <ArrowDown size={15} /> ROLE PARA DESCOBRIR
-        </a>
+        </Link>
         <div>
           <button
             aria-label={paused ? "Reproduzir vídeo" : "Pausar vídeo"}
@@ -159,7 +160,7 @@ export function Home() {
         <div className="tiles">
           {categories.map((c, i) => (
             <Link to={"/catalogo?categoria=" + c} key={c}>
-              <img src={"/images/" + pics[i] + ".jpg"} alt="" loading="lazy" />
+              <img src={publicAsset(`images/${pics[i]}.jpg`)} alt="" loading="lazy" />
               <span>
                 {i === 3 ? "Presentes" : c}
                 <ArrowUpRight />
@@ -181,9 +182,7 @@ export function Home() {
                 to={"/catalogo?ocasiao=" + o}
                 style={{
                   backgroundImage:
-                    "linear-gradient(0deg,#24131b99,transparent),url(/images/" +
-                    pics[[0, 1, 2, 1, 3, 0][i]] +
-                    ".jpg)",
+                    `linear-gradient(0deg,#24131b99,transparent),url(${publicAsset(`images/${pics[[0, 1, 2, 1, 3, 0][i]]}.jpg`)})`,
                 }}
               >
                 {o}
@@ -214,7 +213,7 @@ export function Home() {
           ].map((t, i) => (
             <article key={t}>
               <img
-                src={"/images/" + pics[[0, 3, 1][i]] + ".jpg"}
+                src={publicAsset(`images/${pics[[0, 3, 1][i]]}.jpg`)}
                 alt=""
                 loading="lazy"
               />
@@ -234,7 +233,7 @@ export function Home() {
         </div>
       </section>
       <section id="sobre" className="about">
-        <img src="/images/hero.jpg" alt="Um momento de carinho com flores" />
+        <img src={publicAsset("images/hero.jpg")} alt="Um momento de carinho com flores" />
         <div>
           <div className="eyebrow">SOBRE A FLOR DO DIA</div>
           <h2>

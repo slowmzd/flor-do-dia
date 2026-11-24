@@ -1,3 +1,5 @@
+import { publicAsset } from "../config/assets";
+
 export const occasions = [
   "Aniversários",
   "Romance",
@@ -65,6 +67,6 @@ export const products: Product[] = [
   cat: String(cat),
   desc: String(desc),
   oc: oc as number[],
-  photo: "/images/" + id + ".jpg",
+  photo: publicAsset(`images/${id}.jpg`),
   price: null,
 }));

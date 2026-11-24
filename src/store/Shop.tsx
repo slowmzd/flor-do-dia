@@ -43,6 +43,7 @@ import {
   Volume2,
 } from "lucide-react";
 import { business as b } from "../config/business";
+import { publicAsset } from "../config/assets";
 import { products, categories, occasions, Product } from "../data/catalog";
 export type Line = { id: string; q: number; msg: string };
 export function saved<T>(key: string, value: T): T {
@@ -84,7 +85,7 @@ export function Chat({ size = 18 }) {
 export function Brand() {
   return (
     <Link className="brand" to="/" aria-label="Flor do Dia — início">
-      <img src="/images/logo.png" alt="" />
+      <img src={publicAsset("images/logo.png")} alt="" />
       <span>
         Flor do Dia<small>FLORICULTURA</small>
       </span>
@@ -93,7 +94,7 @@ export function Brand() {
 }
 export const available = new Set(
   Object.keys(import.meta.glob("/public/images/*.jpg")).map((path) =>
-    path.replace("/public", ""),
+    publicAsset(path.slice("/public/".length)),
   ),
 );
 export function Photo({ p }: { p: Product }) {
