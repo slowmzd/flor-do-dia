@@ -13,6 +13,7 @@ import {
   Link,
   useLocation,
   useNavigate,
+  useParams,
   useSearchParams,
 } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
@@ -123,7 +124,8 @@ export function Detail({ p }: { p: Product }) {
   );
 }
 export function ProductPage() {
-  let p = products.find((p) => location.pathname.endsWith("/" + p.id));
+  const { id } = useParams();
+  const p = products.find((product) => product.id === id);
   return p ? (
     <main className="wrap inner">
       <Link className="textlink" to="/catalogo">
