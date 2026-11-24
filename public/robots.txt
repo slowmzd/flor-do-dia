@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://flor-do-dia-cacapava-boutique.orangemetal16.chatgpt.site/sitemap.xml
