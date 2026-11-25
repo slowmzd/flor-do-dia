@@ -39,8 +39,6 @@ import {
   SlidersHorizontal,
   MessageCircle,
   Camera as Instagram,
-  VolumeX,
-  Volume2,
 } from "lucide-react";
 import { business as b } from "../config/business";
 import { publicAsset } from "../config/assets";
@@ -49,8 +47,7 @@ import { wa, Chat, available, Photo } from "../store/Shop";
 export function Hero() {
   let ref = useRef<HTMLVideoElement>(null),
     reduced = useReducedMotion(),
-    [paused, P] = useState(true),
-    [mute, M] = useState(true);
+    [paused, P] = useState(true);
   useEffect(() => {
     if (reduced) ref.current?.pause();
     else ref.current?.play().catch(() => {});
@@ -63,11 +60,12 @@ export function Hero() {
         autoPlay={!reduced}
         playsInline
         loop
-        muted={mute}
+        muted
+        aria-hidden="true"
         onPlay={() => P(false)}
         onPause={() => P(true)}
       >
-        <source src={publicAsset("videos/hero.mp4")} type="video/mp4" />
+        <source src={publicAsset("videos/hero-silent.mp4")} type="video/mp4" />
       </video>
       <div className="shade" />
       <motion.div
@@ -106,7 +104,7 @@ export function Hero() {
         </Link>
         <div>
           <button
-            aria-label={paused ? "Reproduzir vídeo" : "Pausar vídeo"}
+            aria-label={paused ? "Reproduzir animação" : "Pausar animação"}
             onClick={() =>
               paused
                 ? ref.current?.play().catch(() => {})
@@ -114,12 +112,6 @@ export function Hero() {
             }
           >
             {paused ? <Play /> : <Pause />}
-          </button>
-          <button
-            aria-label={mute ? "Ativar áudio" : "Silenciar"}
-            onClick={() => M(!mute)}
-          >
-            {mute ? <VolumeX /> : <Volume2 />}
           </button>
         </div>
       </div>
