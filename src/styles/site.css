@@ -8,6 +8,8 @@
   --serif: "Cormorant Garamond", Georgia, serif;
   color: var(--ink);
   background: var(--paper);
+  caret-color: transparent;
+  cursor: default;
   font:
     15px/1.55 "DM Sans",
     sans-serif;
@@ -19,9 +21,15 @@ a {
   color: inherit;
   text-decoration: none;
 }
+a,
 button,
 select {
   cursor: pointer;
+}
+input,
+textarea {
+  caret-color: auto;
+  cursor: text;
 }
 button {
   background: none;
@@ -120,7 +128,6 @@ nav,
 .btn,
 .sectionrow,
 .herobottom,
-.herobottom > div,
 .benefits,
 .benefits > div,
 .location,
@@ -267,27 +274,12 @@ nav .active {
   left: 6.4%;
   right: 5.2%;
   bottom: 25px;
-  justify-content: space-between;
 }
 .herobottom > a {
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 9px;
-}
-.herobottom > div {
-  gap: 8px;
-}
-.herobottom button {
-  width: 35px;
-  height: 35px;
-  border: 1px solid #fff8;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-}
-.herobottom button svg {
-  width: 15px;
 }
 .benefits {
   background: #f1e5e7;
@@ -949,10 +941,6 @@ section[id] {
 
 @media(max-width:600px){.campaign{padding-top:280px;background:linear-gradient(0deg,#422330 22%,#422330e6 39%,transparent 72%),url("/images/casal.jpg") center 30%/cover}}
 
-/* Keep a pointer click on a photo from placing a visible text caret. */
-img, video, a:has(img), button:has(img), .noPhoto, .occgrid a, .campaign {
-  caret-color: transparent;
-}
 img, video, .tiles a, .detailimg, .pimage, .noPhoto {
   -webkit-user-select: none;
   user-select: none;

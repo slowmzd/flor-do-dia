@@ -1,5 +1,4 @@
 import React, {
-  useState,
   useEffect,
   useRef,
   createContext,
@@ -26,8 +25,6 @@ import {
   ShoppingBag,
   Menu,
   X,
-  Pause,
-  Play,
   Truck,
   HandHeart,
   Diamond,
@@ -45,9 +42,8 @@ import { publicAsset } from "../config/assets";
 import { products, categories, occasions, Product } from "../data/catalog";
 import { wa, Chat, available, Photo } from "../store/Shop";
 export function Hero() {
-  let ref = useRef<HTMLVideoElement>(null),
-    reduced = useReducedMotion(),
-    [paused, P] = useState(true);
+  const ref = useRef<HTMLVideoElement>(null);
+  const reduced = useReducedMotion();
   useEffect(() => {
     if (reduced) ref.current?.pause();
     else ref.current?.play().catch(() => {});
@@ -62,8 +58,6 @@ export function Hero() {
         loop
         muted
         aria-hidden="true"
-        onPlay={() => P(false)}
-        onPause={() => P(true)}
       >
         <source src={publicAsset("videos/hero-silent.mp4")} type="video/mp4" />
       </video>
@@ -102,18 +96,6 @@ export function Hero() {
         <Link to="/#categorias">
           <ArrowDown size={15} /> ROLE PARA DESCOBRIR
         </Link>
-        <div>
-          <button
-            aria-label={paused ? "Reproduzir animação" : "Pausar animação"}
-            onClick={() =>
-              paused
-                ? ref.current?.play().catch(() => {})
-                : ref.current?.pause()
-            }
-          >
-            {paused ? <Play /> : <Pause />}
-          </button>
-        </div>
       </div>
     </section>
   );
